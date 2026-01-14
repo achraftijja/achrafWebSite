@@ -40,7 +40,6 @@ Site web moderne et responsive présentant l'importance du sport pour la santé 
 Lycée Fatir, Laâyoune (Maroc)
 
 📧 tijjaachraf2008@gmail.com  
-📱 +212 693807352  
 🥋 Ceinture noire de Kung-fu
 
 ## 📅 Date
@@ -48,8 +47,6 @@ Janvier 2026
 
 ## 🔗 Liens
 - [Site en ligne](https://ton-username.github.io/sport-et-vie/)
-- [Mon autre projet - Journée de la Femme](https://abir2002e.000webhostapp.com/)
-
 ---
 
 💪 Projet réalisé avec passion pour promouvoir l'importance du sport et du bien-être dans notre vie quotidienne.
