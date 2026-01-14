@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport & Vie - L'Excellence par le Mouvement</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b35;
+            --secondary: #f7931e;
+            --accent: #004e89;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gradient1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-content {
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            animation: slideInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transform: translateY(-100%);
+            animation: slideDown 0.5s ease 0.5s forwards;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient1);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .section-title h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--gradient1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient1);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .benefit-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .benefit-card:nth-child(1) { animation: fadeInUp 0.6s ease; }
+        .benefit-card:nth-child(2) { animation: fadeInUp 0.6s ease 0.1s backwards; }
+        .benefit-card:nth-child(3) { animation: fadeInUp 0.6s ease 0.2s backwards; }
+        .benefit-card:nth-child(4) { animation: fadeInUp 0.6s ease 0.3s backwards; }
+        .benefit-card:nth-child(5) { animation: fadeInUp 0.6s ease 0.4s backwards; }
+        .benefit-card:nth-child(6) { animation: fadeInUp 0.6s ease 0.5s backwards; }
+
+        .benefit-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .benefit-card p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--gradient1);
+            color: white;
+            padding: 6rem 2rem;
+            margin: 6rem 0;
+            position: relative;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            animation: countUp 2s ease;
+        }
+
+        .stat-label {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Health Impact Section */
+        .health-impact {
+            background: var(--light);
+            padding: 6rem 0;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .impact-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .impact-card:nth-child(1) { border-color: #ff6b6b; }
+        .impact-card:nth-child(2) { border-color: #4ecdc4; }
+        .impact-card:nth-child(3) { border-color: #45b7d1; }
+        .impact-card:nth-child(4) { border-color: #f9ca24; }
+        .impact-card:nth-child(5) { border-color: #6c5ce7; }
+        .impact-card:nth-child(6) { border-color: #a29bfe; }
+
+        .impact-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .impact-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+
+        .impact-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            padding: 6rem 0;
+        }
+
+        .tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tip-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+        }
+
+        .tip-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--gradient2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            min-width: 60px;
+        }
+
+        .tip-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .tip-content p {
+            color: #666;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient2);
+            padding: 6rem 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -250px;
+            right: -250px;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            bottom: -200px;
+            left: -200px;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+        }
+
+        .cta-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            color: rgba(255,255,255,0.7);
+            line-height: 2;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+
+            .benefits-grid,
+            .impact-grid,
+            .tips-container {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 3.5rem;
+            }
+
+            .cta-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#bienfaits">Bienfaits</a></li>
+            <li><a href="#statistiques">Statistiques</a></li>
+            <li><a href="#sante">Santé</a></li>
+            <li><a href="#conseils">Conseils</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <h1>Sport & Vie</h1>
+            <p>Transformez votre vie par le pouvoir du mouvement</p>
+            <div class="hero-buttons">
+                <a href="#bienfaits" class="btn btn-primary">Découvrir les Bienfaits</a>
+                <a href="#conseils" class="btn btn-outline">Commencer Maintenant</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="bienfaits">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Les Bienfaits Extraordinaires du Sport</h2>
+                <p>Découvrez comment l'activité physique transforme votre corps et votre esprit</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">❤️</div>
+                    <h3>Santé Cardiovasculaire</h3>
+                    <p>Renforcez votre cœur, améliorez votre circulation sanguine et réduisez jusqu'à 35% les risques de maladies cardiaques grâce à une pratique régulière.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">💪</div>
+                    <h3>Force & Endurance</h3>
+                    <p>Développez votre masse musculaire, augmentez votre force physique et boostez votre endurance pour affronter chaque journée avec énergie.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>Bien-être Mental</h3>
+                    <p>Libérez des endorphines naturelles, réduisez le stress de 40% et combattez l'anxiété et la dépression efficacement.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚖️</div>
+                    <h3>Gestion du Poids</h3>
+                    <p>Maintenez un poids santé optimal en brûlant des calories, en accélérant votre métabolisme et en sculptant votre silhouette.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">😴</div>
+                    <h3>Sommeil Réparateur</h3>
+                    <p>Améliorez la qualité de votre sommeil jusqu'à 65%, endormez-vous plus rapidement et réveillez-vous plein d'énergie chaque matin.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤝</div>
+                    <h3>Connexions Sociales</h3>
+                    <p>Créez des liens authentiques, partagez des passions communes et développez un réseau social enrichissant et motivant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="statistiques">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white; -webkit-text-fill-color: white;">Les Chiffres qui Parlent</h2>
+                <p style="color: rgba(255,255,255,0.9);">Des statistiques impressionnantes qui prouvent l'impact du sport</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">150</div>
+                    <div class="stat-label">Minutes d'activité modérée recommandées par semaine</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-number">35%</div>
+                    <div class="stat-label">Réduction du risque de maladies cardiovasculaires</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-number">50%</div>
+                    <div class="stat-label">Diminution du risque de diabète de type 2</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Années de vie supplémentaires en moyenne</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Impact Section -->
+    <section class="health-impact" id="sante">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Impact Profond sur Votre Santé</h2>
+                <p>Les effets prouvés scientifiquement de l'activité physique régulière</p>
+            </div>
+
+            <div class="impact-grid">
+                <div class="impact-card reveal">
+                    <h4>🛡️ Prévention des Maladies Chroniques</h4>
+                    <p>Réduit significativement les risques de diabète de type 2, d'hypertension artérielle, de certains cancers (côlon, sein) et d'AVC.</p>
+                </div>
+
+                <div class="impact-card reveal">
+                    <h4>🦠 Renforcement Immunitaire</h4>
+                    <p>Augmente les défenses naturelles de votre organisme, améliore la résistance aux infections et accélère la récupération.</p>
+                </div>
+
+                <div class="impact-card reveal">
+                    <h4>🦴 Densité Osseuse Optimale</h4>
+                    <p>Prévient l'ostéoporose, renforce la structure osseuse et réduit considérablement les risques de fractures avec l'âge.</p>
+                </div>
+
+                <div class="impact-card reveal">
+                    <h4>⚡ Équilibre Hormonal</h4>
+                    <p>Régule naturellement la production d'hormones, améliore le métabolisme et optimise le fonctionnement de votre système endocrinien.</p>
+                </div>
+
+                <div class="impact-card reveal">
+                    <h4>🎯 Performance Cognitive</h4>
+                    <p>Stimule la mémoire, améliore la concentration, favorise la neuroplasticité et retarde le déclin cognitif lié à l'âge.</p>
+                </div>
+
+                <div class="impact-card reveal">
+                    <h4>⏳ Longévité Accrue</h4>
+                    <p>Les personnes actives vivent en moyenne 7 ans de plus et maintiennent une meilleure qualité de vie jusqu'à un âge avancé.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="tips-section" id="conseils">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>8 Conseils d'Expert pour Démarrer</h2>
+                <p>Votre guide complet pour adopter une routine sportive efficace et durable</p>
+            </div>
+
+            <div class="tips-container">
+                <div class="tip-card reveal">
+                    <div class="tip-number">01</div>
+                    <div class="tip-content">
+                        <h4>Progressivité avant Tout</h4>
+                        <p>Commencez doucement et augmentez progressivement l'intensité. Votre corps a besoin de temps pour s'adapter. Fixez-vous des objectifs réalistes sur 3 mois.</p>
+                    </div>
+                </div>
+
+                <div class="tip-card reveal">
+                    <div class="tip-number">02</div>
+                    <div class="tip-content">
+                        <h4>Choisissez Votre Passion</h4>
+                        <p>Sélectionnez une activité qui vous plaît vraiment. La motivation vient du plaisir, pas de l'obligation. Testez différentes disciplines avant de vous engager.</p>
+                    </div>
+                </div>
+
+                <div class="tip-card reveal">
+                    <div class="tip-number">03</div>
+                    <div class="tip-content">
+                        <h4>Objectifs SMART</h4>
+                        <p>Définissez des objectifs Spécifiques, Mesurables, Atteignables, Réalistes et Temporels. Célébrez chaque petite victoire pour maintenir votre motivation.</p>
+                    </div>
+                </div>
+
+                <div class="tip-card reveal">
+                    <div class="tip-number">04</div>
+                    <div class="tip-content">
+                        <h4>Variété et Équilibre</h4>
+                        <p>Alternez cardio, renforcement musculaire et flexibilité. La diversité prévient l'ennui, réduit les risques de blessures et optimise les résultats.</p>
+                    </div>
+                </div>
+
+                <div class="tip-card reveal">
+                    <div class="tip-number">05</div>
+                    <div class="tip-content">
+                        <h4>Écoute de Votre Corps</h4>
+                        <p>Respectez les signaux de fatigue et de douleur. La récupération est aussi importante que l'entraînement. Prévoyez au moins un jour de repos complet par semaine.</p>
+                    </div>
+                </div>
+
+                <div class="tip-card reveal">
+                    <div class="tip-number">06</div>
+                    <div class="tip-content">
+                        <h4>Hydratation Optimale</h4>
+                        <p>Buvez 2-3L d'eau par jour, plus 500ml par heure d'exercice. L'hydratation améliore les performances et accélère la récupération musculaire.</p>
+                    </div>
+                </div>
+
+                <div class="tip-card reveal">
+                    <div class="tip-number">07</div>
+                    <div class="tip-content">
+                        <h4>Partenaire d'Entraînement</h4>
+                        <p>Trouvez un partenaire de sport pour multiplier votre motivation par deux. L'engagement mutuel et l'émulation positive garantissent la régularité.</p>
+                    </div>
+                </div>
+
+                <div class="tip-card reveal">
+                    <div class="tip-number">08</div>
+                    <div class="tip-content">
+                        <h4>Accompagnement Professionnel</h4>
+                        <p>Consultez un coach sportif ou un médecin pour un programme personnalisé. L'expertise professionnelle optimise vos résultats et prévient les blessures.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Prêt à Transformer Votre Vie ?</h2>
+            <p>Commencez votre parcours sportif dès aujourd'hui et rejoignez des millions de personnes qui ont choisi la santé et le bien-être</p>
+            <a href="#accueil" class="btn btn-primary">Je Me Lance Maintenant !</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sport & Vie</h3>
+                <p>Votre partenaire pour une vie active, saine et épanouie. Transformez-vous jour après jour grâce au pouvoir du sport.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Liens Rapides</h3>
+                <ul>
+                    <li><a href="#bienfaits">Bienfaits</a></li>
+                    <li><a href="#statistiques">Statistiques</a></li>
+                    <li><a href="#sante">Santé</a></li>
+                    <li><a href="#conseils">Conseils</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Ressources</h3>
+                <ul>
+                    <li><a href="#">Programmes d'entraînement</a></li>
+                    <li><a href="#">Nutrition sportive</a></li>
+                    <li><a href="#">Blog & Actualités</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: contact@sport-vie.fr</p>
+                <p>Téléphone: 01 23 45 67 89</p>
+                <p>Toulouse, France</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sport & Vie | Tous droits réservés | Créé avec passion pour votre santé</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">⚠️ Consultez toujours un professionnel de santé avant de commencer une activité sportive intensive</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll reveal animation
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal(); // Check on load
+    </script>
+</body>
+</html>
